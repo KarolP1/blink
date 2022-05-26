@@ -1,0 +1,192 @@
+https://michal.networkmanager.pl/api
+
+/uploadImages (POST)
+-file
+-photo_status
+
+/customerOrders/{id} (GET)
+
+/customerOrders/showdriverorder/{id} (GET)
+/customerOrders/showbyorderstatus/{id} (GET)
+/orderHistory (POST)
+-order_id
+-driver_id
+-status
+-note
+
+[x]/customerOrders/assignorder/{id} (GET)
+/paymentApi (POST)
+-phone_no
+-payment_method
+-amount
+-stripeToken
+-transaction_id
+
+
+
+
+/signup_api (POST)
+
+-first_name
+-last_name
+-useremail
+-telephone
+-address
+-postal_code
+-password
+-confirm_pass
+-selectedItem
+
+
+/login (POST)
+-email
+-user_pass
+
+/stripe_api (POST)
+
+/all_cuisine (POST)
+
+/all_dishes (POST)
+/all_products (POST)
+/my_all_products (POST)
+-u_id 
+
+/add_allergies (POST)
+-u_id
+-allergy_name
+
+/myopening_hours (POST)
+-id
+
+/mydisputes (POST)
+-id
+/update_establishment_services (POST)
+-u_id
+-is_pickup_food
+-is_food_delivered
+-is_book_table
+
+/enrol_as_driver_waiter_chef (POST)
+-u_id
+-recever_id
+-establishment_status
+
+/mysales_purchases (POST)
+-id
+
+/all_service_providers (POST)
+-id 
+/my_all_allergies (POST)
+-u_id
+
+/upload_dp (POST)
+-u_id
+-#file
+
+/upload_cover (POST)
+-u_id
+-#file
+
+/mymenu (POST)
+-u_id
+
+/all_recipes (POST)
+-u_id
+
+/all_driver (POST)
+
+/user_order (POST)
+-u_id
+
+/all_shops (POST)
+-id
+
+/all_restaurants (POST)
+-id
+
+/all_localcook (POST)
+-id
+
+/all_user_status (POST)
+-status
+
+/search_user (POST)
+-name
+
+/update_userdetail (POST)
+-username
+-firstname
+-lastname
+-dateofbirth //
+-firstaddress //
+-secondaddress //
+-thirdaddress //
+-post_code 
+-town // 
+-country //
+-id
+
+/update_userbussinesdetail (POST)
+-id
+-business_name
+-company_name
+-vat_number
+-firstlineofaddress
+-secondlineofaddress
+-thirdlineofaddress
+-business_postalcode
+-business_town
+-business_country
+-establishment_cusinie
+-establishment_recipe
+
+/translation (POST)
+
+/language (GET)
+
+/add_recipe (POST)
+-recipe_name
+-cusine_id
+-dish_id
+-recipe_type
+-prep_time
+-cook_time
+-serve
+-ingredients
+-method
+-tip
+-userid
+-price
+-#file recipe_pic
+
+/add_menu_recipe (POST)
+-recipe_name
+-cusine_id
+-dish_id
+-recipe_type
+-ingredients
+-tip
+-userid
+-#file recipe_pic
+
+/my_notifications (POST)
+-user_id
+
+/suggested_search (POST)
+-text
+
+/list_all_restuarant_foodtrucks_localcooks_shops (POST)
+-postcode
+-status
+
+/recipe_details (POST)
+-recipe_id
+
+
+
+
+
+
+
+
+
