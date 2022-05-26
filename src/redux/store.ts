@@ -1,10 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import {compose} from 'redux';
-import AuthSlice from './Auth';
 import counterReducer from './test1';
 import authReducer from './Auth';
 import RegisterReducer from './Auth/SignUp';
 import LoginReducer from './Auth/SignIn';
+import UserReducer from './User';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +11,7 @@ export const store = configureStore({
     auth: authReducer,
     register: RegisterReducer,
     login: LoginReducer,
+    user: UserReducer,
   },
 });
 

@@ -4,6 +4,8 @@ import SectionContainer from './Section';
 import {ShadowFlex} from 'react-native-neomorph-shadows';
 import {TextInput} from 'react-native-paper';
 import _ from 'lodash';
+import {useAppDispatch} from '../../../../redux/hooks';
+import {setUserId} from '../../../../redux/User';
 
 const InfoSection = ({user}: {user: any; editAction: () => void}) => {
   const {
@@ -19,7 +21,11 @@ const InfoSection = ({user}: {user: any; editAction: () => void}) => {
     dateofbirth, //TODO: upewnić się czy dostaje z resp
   } = user;
   const [isEditModeEnabled, setIsEditModeEnabled] = useState(false);
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setUserId({id: user.id}));
+  }, [user]);
+  console.log(user.id);
   const stateInitial = {
     username,
     first_name,
