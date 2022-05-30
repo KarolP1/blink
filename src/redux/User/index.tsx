@@ -1,19 +1,41 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {getUserAllergies} from './thunks';
+import {addUserAllergies, getUserAllergies} from './thunks';
 import {initialStateUser} from './types';
 
 const UserSlice = createSlice({
   name: 'User',
   initialState: initialStateUser,
   reducers: {
-    setUserId: (state, action: PayloadAction<{id: string}>) => {
+    setUserId: (state, action: PayloadAction<{id: number}>) => {
       state.uid = action.payload.id;
     },
   },
   extraReducers: builder => {
-    builder.addCase(getUserAllergies.rejected, (state, {payload}: any) => {
-      //TODO fix getting allergies from thunk
+    //get all allergies
+    builder.addCase(getUserAllergies.fulfilled, (state, {payload}: any) => {
+      state.isLoading = false;
+
       state.allergiess = payload;
+    });
+    builder.addCase(getUserAllergies.rejected, (state, {payload}: any) => {
+      state.isLoading = false;
+
+      state.error = payload;
+    });
+    builder.addCase(getUserAllergies.pending, state => {
+      state.isLoading = true;
+    });
+    //get all allergies
+    builder.addCase(addUserAllergies.fulfilled, (state, {payload}) => {
+      state.allergiess = payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(addUserAllergies.rejected, (state, {payload}: any) => {
+      state.error = payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(addUserAllergies.pending, state => {
+      state.isLoading = true;
     });
   },
 });

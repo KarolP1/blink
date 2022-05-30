@@ -15,8 +15,8 @@ import {useAppDispatch} from '../../redux/hooks';
 
 export interface APInterface {}
 const initialState: formLogin = {
-  email: '',
-  user_pass: '',
+  email: 'platek549@gmail.com',
+  user_pass: '12345678',
 };
 
 const Login = () => {

@@ -23,7 +23,6 @@ const RegisterSlice = createSlice({
       state.succes = true;
     });
     builder.addCase(registerUser.rejected, (state, {payload}) => {
-      console.log(payload);
       state = initialStateRegister;
       state.response = payload;
       state.succes = false;

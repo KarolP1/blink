@@ -3,11 +3,15 @@ import React from 'react';
 export const initialStateUser: User = {
   allergiess: [],
   uid: null,
+  error: null,
+  isLoading: false,
 };
 
 export interface User {
   allergiess: Allergy[] | null;
-  uid: string | null;
+  uid: number | null;
+  error: any;
+  isLoading: boolean;
 }
 
 export type Allergy = {

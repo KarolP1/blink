@@ -12,19 +12,16 @@ const LoginSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(loginUser.fulfilled, (state, {payload}) => {
-      console.log('fulfilled');
       state.isLoading = false;
       state.response = payload;
       state.succes = true;
     });
 
     builder.addCase(loginUser.pending, state => {
-      console.log('pending');
       state.isLoading = true;
     });
 
     builder.addCase(loginUser.rejected, (state, {payload}) => {
-      console.log('rejected');
       state.response = null;
       state.error = payload;
       state.succes = false;
