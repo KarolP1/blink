@@ -10,11 +10,13 @@ import React, {useEffect, useState} from 'react';
 import {default as StaticSubscriptions} from '../static/subscription.json';
 import {formRegister} from '../redux/Auth/types';
 import {Controller} from 'react-hook-form';
+import {useFormik} from 'formik';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 interface inputInterface {
   placeholder: string;
   name: string;
-  handleChange: (name: string, value: string | number) => void;
+  handleChange: any;
   injectedValue?: {name: string};
   type?: 'dropdown' | 'default';
   secured?: boolean;
@@ -26,7 +28,6 @@ interface inputInterface {
 
 const InputForm = (props: inputInterface) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [clicked, setClicked] = useState<boolean>(false);
 
   const setSelected = props.setSelected ? props.setSelected : () => {};
 
@@ -35,13 +36,11 @@ const InputForm = (props: inputInterface) => {
       {props.type === 'default' || props.type === undefined ? (
         <>
           <TextInput
-            onChangeText={text => {
-              setClicked(true);
-              props.handleChange(props.name, text);
-            }}
+            onChangeText={props.handleChange}
             value={props.valueForm}
             placeholderTextColor={'#DFDEDE'}
             style={[styles.Input, props.style]}
+            keyboardType={keyboardtype(props.name)}
             placeholder={props.placeholder}
             secureTextEntry={
               props.secured === false || props.secured === undefined
@@ -63,27 +62,29 @@ const InputForm = (props: inputInterface) => {
       )}
       {props.type === 'dropdown' && (
         <View style={isOpen ? {display: 'flex'} : {display: 'none'}}>
-          <FlatList
-            data={StaticSubscriptions}
-            style={{
-              position: 'absolute',
-              zIndex: 100,
-              backgroundColor: 'rgba(170,154,144,0.75)',
-              borderRadius: 5,
-              width: '100%',
-              padding: 10,
-            }}
-            renderItem={({item, index}) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setSelected(item.name, item.id);
-                  props.handleChange(props.name, item.name);
-                  setIsOpen(false);
-                }}>
-                <Text key={index}>{item.name}</Text>
-              </TouchableOpacity>
-            )}
-          />
+          {
+            <FlatList
+              data={StaticSubscriptions}
+              style={{
+                position: 'absolute',
+                zIndex: 100,
+                backgroundColor: 'rgba(170,154,144,0.75)',
+                borderRadius: 5,
+                width: '100%',
+                padding: 10,
+              }}
+              renderItem={({item, index}) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    setSelected(item.name, item.id);
+                    props.handleChange(item.name);
+                    setIsOpen(false);
+                  }}>
+                  <Text key={index}>{item.name}</Text>
+                </TouchableOpacity>
+              )}
+            />
+          }
         </View>
       )}
     </View>
@@ -110,3 +111,16 @@ const styles = StyleSheet.create({
   },
   container: {width: '100%'},
 });
+const keyboardtype = (props: string) => {
+  switch (props) {
+    case 'useremail':
+      return 'email-address';
+    case 'telephone':
+      return 'phone-pad';
+    case 'postal_code':
+      return 'phone-pad';
+
+    default:
+      return 'default';
+  }
+};

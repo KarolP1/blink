@@ -29,6 +29,7 @@ export interface RegisterInterface {
   succes: boolean;
   response: any;
   error: any;
+  isLoading: boolean;
 }
 
 export interface LoginInterface {
@@ -39,22 +40,24 @@ export interface LoginInterface {
   error: any;
 }
 
-export const initialStateRegister: RegisterInterface = {
-  form: {
-    first_name: '',
-    last_name: '',
-    useremail: '',
-    telephone: '',
-    address: '',
-    postal_code: '',
-    password: '',
-    confirm_pass: '',
-    selectedItem: '',
-  },
+export const initialStateRegisterForm = {
+  first_name: '',
+  last_name: '',
+  useremail: '',
+  telephone: '',
+  address: '',
+  postal_code: '',
+  password: '',
+  confirm_pass: '',
+  selectedItem: '',
+};
 
+export const initialStateRegister: RegisterInterface = {
+  form: initialStateRegisterForm,
+  isLoading: false,
   succes: false,
-  response: '',
-  error: '',
+  response: null,
+  error: null,
 };
 export const initialStateLogin: LoginInterface = {
   form: {

@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "name": "Standard User",
+    "name": "End User",
     "icon": "https://static.networkmanager.pl/images/static/standard.png",
     "pricing": "free",
     "options": [
@@ -16,7 +16,7 @@
   },
   {
     "id": 1,
-    "name": "Student User",
+    "name": "Student",
     "icon": "https://static.networkmanager.pl/images/static/student.png",
     "pricing": "free",
     "options": [
@@ -48,7 +48,7 @@
 
   {
     "id": 3,
-    "name": "Restaurant",
+    "name": "Restuarant",
     "icon": "https://static.networkmanager.pl/images/static/restaurants.png",
     "pricing": "6 Pounds(6 % from Transaction ) ",
     "options": [
@@ -65,7 +65,7 @@
 
   {
     "id": 4,
-    "name": "Foodtruck",
+    "name": "Food trucks",
     "icon": "https://static.networkmanager.pl/images/static/foodtruck.png",
     "pricing": "4 Pounds(6 % from Transaction )",
     "options": [

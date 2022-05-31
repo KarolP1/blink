@@ -8,19 +8,21 @@ export const registerUser = createAsyncThunk<any, formRegister>(
   async (user, {rejectWithValue}) => {
     try {
       if (
-        user.first_name !== '' ||
-        user.last_name !== '' ||
-        user.useremail !== '' ||
-        user.telephone !== '' ||
-        user.address !== '' ||
-        user.postal_code !== '' ||
-        user.password !== '' ||
-        user.confirm_pass !== ''
+        user.first_name === '' ||
+        user.last_name === '' ||
+        user.useremail === '' ||
+        user.telephone === '' ||
+        user.address === '' ||
+        user.postal_code === '' ||
+        user.password === '' ||
+        user.confirm_pass === ''
       ) {
-        return rejectWithValue({finalError: 'Not valid inputs'});
+        return rejectWithValue('Not valid inputs');
+      }
+      if (user.password !== user.confirm_pass) {
+        return rejectWithValue('passwords not mach');
       }
       const response = await axios.post('/signup_api', user);
-
       return response.data;
     } catch (err: any) {
       if (err.toJSON().message === 'Network Error') {
@@ -45,7 +47,6 @@ export const loginUser = createAsyncThunk<
     const {data} = await axios.post('/login_api', user);
 
     if (data.status === false) {
-      console.log(data.message);
       return rejectWithValue(data.message);
     }
     return data;

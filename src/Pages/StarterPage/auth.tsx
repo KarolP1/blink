@@ -1,7 +1,12 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import React, {ReactNode, useState} from 'react';
-import Login from './Login';
-import Register from './Register';
 
 const Auth = ({children}: {children: ReactNode}) => {
   return (
@@ -32,14 +37,12 @@ const styles = StyleSheet.create({
   },
   logo: {
     width: '100%',
-    height: 80,
+    height: 40,
     resizeMode: 'center',
   },
   formContainer: {
-    paddingVertical: 40,
-    marginVertical: 40,
     backgroundColor: 'rgba(77,77,77,.15)',
-    padding: 10,
     borderRadius: 10,
+    padding: 10,
   },
 });

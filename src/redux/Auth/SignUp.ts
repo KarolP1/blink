@@ -1,6 +1,4 @@
-import {RootState} from '../store';
-import {AsyncThunkAction, createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {useSelector} from 'react-redux';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {formRegister, initialStateRegister, RegisterInterface} from './types';
 import {registerUser} from './thunks';
 
@@ -10,30 +8,40 @@ const RegisterSlice = createSlice({
   reducers: {
     setRegisterState: (
       state: RegisterInterface,
-      {payload}: PayloadAction<{form: formRegister}>,
+      {payload}: PayloadAction<formRegister>,
     ) => {
-      state.form = payload.form;
+      console.log({state: 'setting register state'});
+      state.form = payload;
+      console.log({state, payload});
+    },
+    resetRegisterState: (state: RegisterInterface) => {
+      state = initialStateRegister;
+
+      console.log(state);
     },
   },
   extraReducers: builder => {
     builder.addCase(registerUser.fulfilled, (state, {payload}) => {
-      state = initialStateRegister;
-
+      state.response = null;
+      state.error = null;
       state.response = payload;
       state.succes = true;
+      state.isLoading = false;
+      console.log('fulfiled' + state);
     });
     builder.addCase(registerUser.rejected, (state, {payload}) => {
-      state = initialStateRegister;
-      state.response = payload;
+      state.error = null;
+      state.response = null;
       state.succes = false;
+      state.isLoading = false;
       state.error = payload;
+      console.log('rejected' + state);
     });
-    builder.addCase(registerUser.pending, (state, {payload}) => {
-      state = initialStateRegister;
-      state.response = payload;
-      state.succes = true;
+    builder.addCase(registerUser.pending, state => {
+      state.isLoading = true;
+      console.log('pending' + state);
     });
   },
 });
-export const {setRegisterState} = RegisterSlice.actions;
+export const {setRegisterState, resetRegisterState} = RegisterSlice.actions;
 export default RegisterSlice.reducer;

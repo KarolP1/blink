@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Bakeris",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/bakeris.png"
+  },
+  {
+    "name": "Starters",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/starters.png"
+  },
+  {
+    "name": "Sides",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/sides.png"
+  },
+  {
+    "name": "Soups",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/soups.png"
+  },
+  {
+    "name": "Mains",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/mains.png"
+  },
+  {
+    "name": "Desserts",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/desserts.png"
+  },
+  {
+    "name": "Beverages",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/beverages.png"
+  },
+  {
+    "name": "Alc Beverages",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/alcbeverages.png"
+  },
+  {
+    "name": "Products",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/products.png"
+  }
+]

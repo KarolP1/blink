@@ -17,7 +17,6 @@ export const getUserAllergies = createAsyncThunk<
     const {data} = await axios.post('/my_all_allergies', {u_id: uid});
 
     if (data.status === false) {
-      console.log(data.message);
       return rejectWithValue(data.message);
     }
     return data.data;
@@ -54,7 +53,6 @@ export const addUserAllergies = createAsyncThunk<
     });
 
     if (data.status === false) {
-      console.log(data.message);
       return rejectWithValue(data.message);
     }
     return data;

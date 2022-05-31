@@ -20,7 +20,7 @@ const InsideMenu = ({
       />
       <ItemMenu
         id={1}
-        name="Rec0ipes"
+        name="Recipes"
         icon={'https://static.networkmanager.pl/images/profile/Reipes.png'}
         selected={selected}
         setSelected={setSelected}

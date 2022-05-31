@@ -25,7 +25,6 @@ const InfoSection = ({user}: {user: any; editAction: () => void}) => {
   useEffect(() => {
     dispatch(setUserId({id: user.id}));
   }, [user]);
-  console.log(user.id);
   const stateInitial = {
     username,
     first_name,

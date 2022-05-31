@@ -1,13 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import SignedInBG from '../../../../components/background/ImageBackgroundSIN';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../redux/store';
+import SignedInBG from '../../../../components/background/ImageBackgroundSIN';
+import ProfileInfoPage from './componentsUser/ProfileInfoPage';
 import UserBanner from '../../../../components/Profile/userBanner';
 import InsideMenu from '../../../../components/Profile/InsideMenu/insideMenu';
-import BalanceSection from './BalanceSection';
-import InfoSection from './InfoSection';
-import AllergiessSection from './AllergiessSection';
+import ProfileRecipesPage from './componentsUser/ProfileRecipesPage';
 
 const ProfileRoot = () => {
   const [selected, setSelected] = useState<0 | 1 | 2 | 3 | 4>(0);
@@ -24,14 +23,11 @@ const ProfileRoot = () => {
         lastName={user.last_name}
       />
       <InsideMenu selected={selected} setSelected={setSelected} />
-      <BalanceSection balance={43.21} />
-      <InfoSection
-        user={user}
-        editAction={() => {
-          console.log('editing');
-        }}
-      />
-      <AllergiessSection />
+      {selected === 0 && <ProfileInfoPage />}
+      {selected === 1 && <ProfileRecipesPage />}
+      {selected === 2 && <ProfileInfoPage />}
+      {selected === 3 && <ProfileInfoPage />}
+      {selected === 4 && <ProfileInfoPage />}
     </SignedInBG>
   );
 };
