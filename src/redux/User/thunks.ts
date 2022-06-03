@@ -67,3 +67,33 @@ export const addUserAllergies = createAsyncThunk<
     return rejectWithValue(err);
   }
 });
+export const deleteAllergies = createAsyncThunk<
+  {
+    status: boolean;
+    message: string;
+    data: Allergy[];
+  },
+  {allergy_id: number}
+>('user/deleteAllergy', async ({allergy_id}, {rejectWithValue}) => {
+  try {
+    const {data} = await axios.delete('/delete_allergy', {
+      data: {
+        allergy_id,
+      },
+    });
+
+    if (data.status === false) {
+      return rejectWithValue(data.message);
+    }
+    return data;
+  } catch (err: any) {
+    if (err.toJSON().message === 'Network Error') {
+      return rejectWithValue({
+        status: false,
+        message: 'Network Connection Error',
+        data: null,
+      });
+    }
+    return rejectWithValue(err);
+  }
+});

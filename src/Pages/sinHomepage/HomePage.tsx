@@ -3,12 +3,14 @@ import React, {useEffect} from 'react';
 import Order from './pagesViews/Order/order';
 import Recipes from './pagesViews/recipes';
 import BuddyProgram from './pagesViews/BuddyProgram';
-import Profile from './pagesViews/Profile/Profile';
 import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import ProfileRoot from './pagesViews/Profile';
+import CameraPage from './pagesViews/Camera';
+import {ProfilePageStack} from './pagesViews/Profile/ProfileStackNavigator';
+import {useNavigation} from '@react-navigation/native';
 
 export type TabStackParamList = {
   order: undefined;
@@ -24,8 +26,10 @@ const HomePage = () => {
   return (
     <Tab.Navigator
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
+
         tabBarStyle: {
           position: 'absolute',
           marginHorizontal: 20,
@@ -34,6 +38,7 @@ const HomePage = () => {
           borderRadius: 25,
           backgroundColor: 'rgba(0,0,0,.65)',
           shadowColor: 'rgba(0,0,0,0.15)',
+          zIndex: 0,
         },
       }}>
       <Tab.Screen
@@ -113,7 +118,7 @@ const HomePage = () => {
       />
       <Tab.Screen
         name="profile"
-        component={ProfileRoot}
+        component={ProfilePageStack}
         options={{
           tabBarIcon: ({color, focused}) => (
             <View

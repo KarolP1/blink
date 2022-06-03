@@ -1,13 +1,16 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {addUserAllergies, getUserAllergies} from './thunks';
+import {addUserAllergies, deleteAllergies, getUserAllergies} from './thunks';
 import {initialStateUser} from './types';
 
 const UserSlice = createSlice({
   name: 'User',
   initialState: initialStateUser,
   reducers: {
-    setUserId: (state, action: PayloadAction<{id: number}>) => {
-      state.uid = action.payload.id;
+    setUserId: (state, action: PayloadAction<{id?: number}>) => {
+      state.uid = action.payload.id || 0;
+    },
+    setUserSubscription: (state, {payload}: PayloadAction<string>) => {
+      state.userSubscription = payload;
     },
   },
   extraReducers: builder => {
@@ -37,7 +40,19 @@ const UserSlice = createSlice({
     builder.addCase(addUserAllergies.pending, state => {
       state.isLoading = true;
     });
+    //delete allergy
+    builder.addCase(deleteAllergies.fulfilled, (state, action) => {
+      state.allergiess = action.payload.data;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteAllergies.rejected, (state, {payload}) => {
+      state.error = payload;
+      state.isLoading = false;
+    });
+    builder.addCase(deleteAllergies.pending, (state, action) => {
+      state.isLoading = true;
+    });
   },
 });
-export const {setUserId} = UserSlice.actions;
+export const {setUserId, setUserSubscription} = UserSlice.actions;
 export default UserSlice.reducer;

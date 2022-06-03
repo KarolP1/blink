@@ -15,9 +15,11 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 const SignedInBG = ({
   children,
   cantGoBack,
+  woMenu,
 }: {
   children: ReactNode;
   cantGoBack?: boolean;
+  woMenu?: boolean;
 }) => {
   const navigation = useNavigation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,9 +27,6 @@ const SignedInBG = ({
   navigation.addListener('focus', () => {
     setIsMenuOpen(false);
   });
-  useEffect(() => {
-    // console.log(isMenuOpen);
-  }, [isMenuOpen]);
 
   return (
     <ImageBackground
@@ -52,11 +51,9 @@ const SignedInBG = ({
             <Text>menu </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.content}>
-          <SafeAreaView>
-            <ScrollView>{children}</ScrollView>
-          </SafeAreaView>
-        </View>
+        <SafeAreaView style={styles.content}>
+          <ScrollView>{children}</ScrollView>
+        </SafeAreaView>
       </SafeAreaView>
     </ImageBackground>
   );
@@ -97,6 +94,5 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 0,
     paddingTop: 0,
-    paddingBottom: 93,
   },
 });

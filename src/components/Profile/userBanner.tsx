@@ -2,10 +2,10 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 
 const UserBanner = (state: {
-  profileImage: string;
-  bannerImage: string;
-  firstName: string;
-  lastName: string;
+  profileImage: string | undefined;
+  bannerImage: string | undefined;
+  firstName: string | undefined;
+  lastName: string | undefined;
 }) => {
   return (
     <View style={styles.container}>

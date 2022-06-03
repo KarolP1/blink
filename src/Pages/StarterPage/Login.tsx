@@ -12,6 +12,7 @@ import {formLogin} from '../../redux/Auth/types';
 import {loginUser} from '../../redux/Auth/thunks';
 import {logIn} from '../../redux/Auth';
 import {useAppDispatch} from '../../redux/hooks';
+import {setUserSubscription} from '../../redux/User';
 
 export interface APInterface {}
 const initialState: formLogin = {
@@ -25,9 +26,12 @@ const Login = () => {
   const dispatch = useAppDispatch();
 
   const state = useSelector((state: RootState) => state.login);
+  console.log({state: state.response});
 
   useEffect(() => {
     if (state.succes === true) dispatch(logIn());
+    if (state.response !== null)
+      dispatch(setUserSubscription(state.response.data.user_status));
   }, [state]);
 
   const onPressFunctionality = () => {

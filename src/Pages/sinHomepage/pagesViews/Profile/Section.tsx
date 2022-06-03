@@ -11,7 +11,6 @@ import {
 import React, {ReactNode, useState} from 'react';
 import {TextInput} from 'react-native-paper';
 import {ShadowFlex} from 'react-native-neomorph-shadows';
-import {useDispatch} from 'react-redux';
 import {useAppDispatch, useAppSelector} from '../../../../redux/hooks';
 import {addUserAllergies} from '../../../../redux/User/thunks';
 
@@ -63,12 +62,12 @@ const SectionContainerEdit = (props: {
           }}>
           {!props.isEditModeEnabled ? (
             <Image
-              style={{height: '90%', aspectRatio: 1}}
+              style={{height: 30, aspectRatio: 1}}
               source={require(`../../../../assets/utilityIcons/edit.png`)}
             />
           ) : (
             <Image
-              style={{height: '90%', aspectRatio: 1}}
+              style={{height: 30, aspectRatio: 1}}
               source={require(`../../../../assets/utilityIcons/close.png`)}
             />
           )}
@@ -85,14 +84,16 @@ const SectionContainerAdd = (props: {
   children?: ReactNode;
   editAction: () => void;
   isEditModeEnabled: boolean;
-  ifFormHasChanges: boolean;
 }) => {
   const [elementToAdd, setElementToAdd] = useState<string>('');
   const uid = useAppSelector(state => state.user.uid);
 
   const dispatch = useAppDispatch();
   const addAllergy = () => {
-    dispatch(addUserAllergies({uid: uid, allergy_name: elementToAdd}));
+    if (elementToAdd !== '') {
+      dispatch(addUserAllergies({uid: uid, allergy_name: elementToAdd}));
+      setElementToAdd('');
+    }
   };
   return (
     <View style={{margin: 10}}>
@@ -104,12 +105,7 @@ const SectionContainerAdd = (props: {
         <Text style={styles.headerText}>{props.title}</Text>
         <TouchableOpacity
           onPress={() => {
-            if (props.ifFormHasChanges)
-              Alert.alert(
-                'notification',
-                'form has unsafed changes. Submit to save them.',
-              );
-            else props.editAction();
+            props.editAction();
           }}
           style={{
             height: '100%',
@@ -119,7 +115,7 @@ const SectionContainerAdd = (props: {
           }}>
           {!props.isEditModeEnabled ? (
             <Image
-              style={{height: '90%', aspectRatio: 1}}
+              style={{height: 20, aspectRatio: 1}}
               source={require(`../../../../assets/utilityIcons/add.png`)}
             />
           ) : (
@@ -154,6 +150,7 @@ const SectionContainerAdd = (props: {
                 width: '100%',
                 backgroundColor: 'transparent',
               }}
+              value={elementToAdd}
               onChangeText={text => setElementToAdd(text)}
               placeholder="Add Allergy"
             />
@@ -179,10 +176,42 @@ const SectionContainerAdd = (props: {
   );
 };
 
-const SectionContainer: any = {};
-SectionContainer.Clasic = SectionContainerNoEditing;
-SectionContainer.Edit = SectionContainerEdit;
-SectionContainer.Add = SectionContainerAdd;
+const SectionContainerPhoto = (props: {
+  title: string;
+  children?: ReactNode;
+  plusAction: () => void;
+}) => {
+  return (
+    <View style={{margin: 10}}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.headerText}>{props.title}</Text>
+        <TouchableOpacity
+          onPress={() => {
+            props.plusAction();
+          }}
+          style={{
+            height: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+            aspectRatio: 1,
+          }}>
+          <Image
+            style={{height: 20, aspectRatio: 1}}
+            source={require(`../../../../assets/utilityIcons/add.png`)}
+          />
+        </TouchableOpacity>
+      </View>
+      <>{props.children}</>
+    </View>
+  );
+};
+
+const SectionContainer = {
+  Edit: SectionContainerEdit,
+  Clasic: SectionContainerNoEditing,
+  Add: SectionContainerAdd,
+  Photo: SectionContainerPhoto,
+};
 export default SectionContainer;
 
 const styles = StyleSheet.create({

@@ -36,7 +36,7 @@ export interface LoginInterface {
   form: formLogin;
   succes: boolean;
   isLoading: boolean;
-  response: any;
+  response: {data: responseRegister} | null;
   error: any;
 }
 
@@ -70,3 +70,28 @@ export const initialStateLogin: LoginInterface = {
   isLoading: false,
   error: null,
 };
+
+export interface responseRegister {
+  address?: string;
+  email?: string;
+  first_name?: string;
+  gender?: string;
+  last_name?: string;
+  postalcode?: string;
+  profession?: string;
+  user_status?: string;
+  username?: string;
+  dob?: string;
+  coverphoto?: string;
+  dp?: string;
+  id?: number;
+  business_name?: string;
+  company_name?: string;
+  vat_number?: string;
+  firstlineofaddress?: string;
+  secondlineofaddress?: string;
+  thirdlineofaddress?: string;
+  business_postalcode?: string;
+  business_town?: string;
+  business_country?: string;
+}

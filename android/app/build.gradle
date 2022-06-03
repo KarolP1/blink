@@ -142,6 +142,9 @@ android {
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
+
+missingDimensionStrategy 'react-native-camera', 'general'
+
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
             externalNativeBuild {
@@ -280,6 +283,7 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
+    apply plugin: 'com.google.android.gms.strict-version-matcher-plugin'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
