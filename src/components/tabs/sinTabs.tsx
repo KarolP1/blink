@@ -3,7 +3,7 @@ import {Image} from 'react-native';
 import BuddyProgram from '../../Pages/sinHomepage/pagesViews/BuddyProgram';
 import Order from '../../Pages/sinHomepage/pagesViews/Order/order';
 import ProfileRoot from '../../Pages/sinHomepage/pagesViews/Profile';
-import Recipes from '../../Pages/sinHomepage/pagesViews/recipes';
+import Recipes from '../../Pages/sinHomepage/pagesViews/Recipes/recipe';
 
 const Tab = createBottomTabNavigator();
 export const Tabs = () => {

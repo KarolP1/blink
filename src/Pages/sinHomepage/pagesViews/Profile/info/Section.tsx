@@ -1,18 +1,16 @@
 import {
   Alert,
-  Button,
   Image,
   StyleSheet,
   Text,
-  Touchable,
   TouchableOpacity,
   View,
 } from 'react-native';
 import React, {ReactNode, useState} from 'react';
 import {TextInput} from 'react-native-paper';
 import {ShadowFlex} from 'react-native-neomorph-shadows';
-import {useAppDispatch, useAppSelector} from '../../../../redux/hooks';
-import {addUserAllergies} from '../../../../redux/User/thunks';
+import {useAppDispatch, useAppSelector} from '../../../../../redux/hooks';
+import {addUserAllergies} from '../../../../../redux/User/thunks';
 
 const SectionContainerNoEditing = (props: {
   title: string;
@@ -63,12 +61,12 @@ const SectionContainerEdit = (props: {
           {!props.isEditModeEnabled ? (
             <Image
               style={{height: 30, aspectRatio: 1}}
-              source={require(`../../../../assets/utilityIcons/edit.png`)}
+              source={require(`../../../../../assets/utilityIcons/edit.png`)}
             />
           ) : (
             <Image
               style={{height: 30, aspectRatio: 1}}
-              source={require(`../../../../assets/utilityIcons/close.png`)}
+              source={require(`../../../../../assets/utilityIcons/close.png`)}
             />
           )}
         </TouchableOpacity>
@@ -116,12 +114,12 @@ const SectionContainerAdd = (props: {
           {!props.isEditModeEnabled ? (
             <Image
               style={{height: 20, aspectRatio: 1}}
-              source={require(`../../../../assets/utilityIcons/add.png`)}
+              source={require(`../../../../../assets/utilityIcons/add.png`)}
             />
           ) : (
             <Image
               style={{height: 20, aspectRatio: 1}}
-              source={require(`../../../../assets/utilityIcons/close.png`)}
+              source={require(`../../../../../assets/utilityIcons/close.png`)}
             />
           )}
         </TouchableOpacity>
@@ -197,7 +195,7 @@ const SectionContainerPhoto = (props: {
           }}>
           <Image
             style={{height: 20, aspectRatio: 1}}
-            source={require(`../../../../assets/utilityIcons/add.png`)}
+            source={require(`../../../../../assets/utilityIcons/add.png`)}
           />
         </TouchableOpacity>
       </View>

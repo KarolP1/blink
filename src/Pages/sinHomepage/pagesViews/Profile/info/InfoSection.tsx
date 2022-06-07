@@ -4,7 +4,7 @@ import SectionContainer from './Section';
 import {ShadowFlex} from 'react-native-neomorph-shadows';
 import {TextInput} from 'react-native-paper';
 import _, {values} from 'lodash';
-import {responseRegister} from '../../../../redux/Auth/types';
+import {responseRegister} from '../../../../../redux/Auth/types';
 
 const InfoSection = ({
   user,

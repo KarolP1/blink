@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import SectionContainer from './Section';
-import {useAppDispatch, useAppSelector} from '../../../../redux/hooks';
-import {getUserAllergies} from '../../../../redux/User/thunks';
-import AllergyItem from '../../../../components/Profile/Allergy';
+import {useAppDispatch, useAppSelector} from '../../../../../redux/hooks';
+import {getUserAllergies} from '../../../../../redux/User/thunks';
+import AllergyItem from '../../../../../components/Profile/Allergy';
 
 const AllergiessSection = () => {
   const [isEditModeEnabled, setIsEditModeEnabled] = useState<boolean>(false);

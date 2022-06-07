@@ -2,12 +2,13 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../../../../redux/store';
-import BalanceSection from '../BalanceSection';
-import InfoSection from '../InfoSection';
-import AllergiessSection from '../AllergiessSection';
+import BalanceSection from '../info/BalanceSection';
+import InfoSection from '../info/InfoSection';
+import AllergiessSection from '../info/AllergiessSection';
 import {useAppDispatch, useAppSelector} from '../../../../../redux/hooks';
 import {setUserId} from '../../../../../redux/User';
-import ImageSection from '../ImageSection';
+import ImageSection from '../info/ImageSection';
+import FixSizeView from '../../../../../components/fixSizeView';
 
 const ProfileInfoPage = () => {
   const {response} = useSelector((state: RootState) => state.login);
@@ -43,8 +44,9 @@ const ProfileInfoPage = () => {
           console.log('editing');
         }}
       />
-      <ImageSection />
       <AllergiessSection />
+      <ImageSection />
+      <FixSizeView />
     </>
   );
 };

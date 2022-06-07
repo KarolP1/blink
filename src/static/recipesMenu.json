@@ -1,5 +1,10 @@
 [
   {
+    "id": -1,
+    "name": "All",
+    "icon": "https://static.networkmanager.pl/images/recipesMenu/bakeris.png"
+  },
+  {
     "id": 0,
     "name": "Bakeris",
     "icon": "https://static.networkmanager.pl/images/recipesMenu/bakeris.png"

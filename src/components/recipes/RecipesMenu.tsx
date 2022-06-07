@@ -3,12 +3,15 @@ import React, {useState} from 'react';
 import RecipesMenuItem from './RecipesMenuItem';
 
 import {default as menuIems} from '../../static/recipesMenu.json';
+import {selectedMenuItem} from '../../Pages/sinHomepage/pagesViews/Profile/Recipes/Types';
 
-const RecipesMenu = () => {
-  const [Selected, setSelected] = useState<{id: number; name: string}>({
-    id: 0,
-    name: 'Bakeris',
-  });
+const RecipesMenu = ({
+  Selected,
+  setSelected,
+}: {
+  setSelected: React.Dispatch<React.SetStateAction<selectedMenuItem>>;
+  Selected: selectedMenuItem;
+}) => {
   return (
     <ScrollView horizontal={true} style={styles.ContainerMenu}>
       {menuIems.map(element => (

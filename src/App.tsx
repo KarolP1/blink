@@ -13,6 +13,7 @@ import {RootStackParamList, StarterPage} from './Pages/StarterPage';
 import {RootState, store} from './redux/store';
 import FirstPage from './Pages/sinHomepage';
 import {enableLatestRenderer} from 'react-native-maps';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 enableLatestRenderer();
 
@@ -27,6 +28,9 @@ export type AuthScreenProp = CompositeNavigationProp<
   NativeStackNavigationProp<LoggedInParamList, 'LoggedIn'>
 >;
 const App = () => {
+  SystemNavigationBar.setNavigationColor('transparent');
+  SystemNavigationBar.stickyImmersive();
+
   const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
   return (
     <>

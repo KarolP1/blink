@@ -6,10 +6,9 @@ import SignedInBG from '../../../../components/background/ImageBackgroundSIN';
 import ProfileInfoPage from './componentsUser/ProfileInfoPage';
 import UserBanner from '../../../../components/Profile/userBanner';
 import InsideMenu from '../../../../components/Profile/InsideMenu/insideMenu';
-import ProfileRecipesPage from './componentsUser/ProfileRecipesPage';
+import ProfileRecipesPage from './Recipes/ProfileRecipesPage';
 import FixSizeView from '../../../../components/fixSizeView';
 import {useNavigation} from '@react-navigation/native';
-import {ProfileScreenProp} from './ProfileStackNavigator';
 
 const ProfileRoot = () => {
   const [selected, setSelected] = useState<0 | 1 | 2 | 3 | 4>(0);
@@ -19,25 +18,6 @@ const ProfileRoot = () => {
   useEffect(() => {
     setUserSubscription(user.userSubscription);
   }, [user]);
-
-  const navigation = useNavigation<ProfileScreenProp>();
-
-  useLayoutEffect(() => {
-    navigation.addListener('focus', () => {
-      navigation.getParent()?.setOptions({
-        tabBarStyle: {
-          position: 'absolute',
-          marginHorizontal: 20,
-          marginVertical: 10,
-          height: 83,
-          borderRadius: 25,
-          backgroundColor: 'rgba(0,0,0,.65)',
-          shadowColor: 'rgba(0,0,0,0.15)',
-          zIndex: 0,
-        },
-      });
-    });
-  });
 
   const UserFromDb = login.response?.data;
 

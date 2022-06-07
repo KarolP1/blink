@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import SignedInBG from '../../../components/background/ImageBackgroundSIN';
+import SignedInBG from '../../../../components/background/ImageBackgroundSIN';
 
 const Recipes = () => {
   return (

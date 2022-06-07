@@ -29,23 +29,22 @@ const RecipesMenuItem = ({
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={() => setSelected({id: item.id, name: item.name})}>
-      <NeomorphFlex
-        inner={isSelected}
-        darkShadowColor="#rgba(0,0,0,0.1)" // <- set this
-        lightShadowColor="#rgba(0,0,0,1.1)" // <- this
+      <ShadowFlex
+        inner={isSelected ? true : false} // <- enable inner shadow
+        useArt // <- set this prop to use non-native shadow on ios
         style={{
-          shadowOffset: {width: 0, height: 0},
-          shadowOpacity: 0.1,
-          shadowRadius: 3,
-          borderRadius: 3,
-          backgroundColor: 'rgba(170,154,144,0.55)',
+          shadowOffset: {width: 5, height: 5},
+          shadowOpacity: 1,
+          shadowColor: 'rgba(77,77,77,.7)',
+          shadowRadius: 5,
+          borderRadius: 5,
+          backgroundColor: 'rgba(171,160,145,0.7)',
+          width: 90,
           height: 90,
-          aspectRatio: 1,
-          margin: 10,
-          paddingVertical: 3,
-          paddingHorizontal: 6,
-          justifyContent: 'center',
+          margin: 2,
           alignItems: 'center',
+          justifyContent: 'center',
+          marginHorizontal: 5,
         }}>
         <Image
           style={{height: 40, aspectRatio: 1}}
@@ -54,7 +53,7 @@ const RecipesMenuItem = ({
           }}
         />
         <Text>{item.name}</Text>
-      </NeomorphFlex>
+      </ShadowFlex>
     </TouchableOpacity>
   );
 };

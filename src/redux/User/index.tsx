@@ -9,8 +9,11 @@ const UserSlice = createSlice({
     setUserId: (state, action: PayloadAction<{id?: number}>) => {
       state.uid = action.payload.id || 0;
     },
-    setUserSubscription: (state, {payload}: PayloadAction<string>) => {
-      state.userSubscription = payload;
+    setUserSubscription: (
+      state,
+      {payload}: PayloadAction<string | undefined>,
+    ) => {
+      state.userSubscription = payload !== undefined ? payload : '';
     },
   },
   extraReducers: builder => {

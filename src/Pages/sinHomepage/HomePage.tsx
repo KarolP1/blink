@@ -1,15 +1,13 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect} from 'react';
 import Order from './pagesViews/Order/order';
-import Recipes from './pagesViews/recipes';
+import Recipes from './pagesViews/Recipes/';
 import BuddyProgram from './pagesViews/BuddyProgram';
 import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import ProfileRoot from './pagesViews/Profile';
-import CameraPage from './pagesViews/Camera';
-import {ProfilePageStack} from './pagesViews/Profile/ProfileStackNavigator';
 import {useNavigation} from '@react-navigation/native';
 
 export type TabStackParamList = {
@@ -33,7 +31,7 @@ const HomePage = () => {
         tabBarStyle: {
           position: 'absolute',
           marginHorizontal: 20,
-          marginVertical: 10,
+          marginVertical: 40,
           height: 83,
           borderRadius: 25,
           backgroundColor: 'rgba(0,0,0,.65)',
@@ -118,7 +116,7 @@ const HomePage = () => {
       />
       <Tab.Screen
         name="profile"
-        component={ProfilePageStack}
+        component={ProfileRoot}
         options={{
           tabBarIcon: ({color, focused}) => (
             <View
