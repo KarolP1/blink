@@ -44,7 +44,7 @@ const HugeMenu = () => {
             navigation.navigate('Home', {screen: 'recipes'});
             navigation.reset({
               index: 0,
-              routes: [{name: 'recipes'}],
+              routes: [{name: 'Home'}],
             });
           }}>
           <Image
@@ -64,7 +64,7 @@ const HugeMenu = () => {
             navigation.navigate('Home', {screen: 'buddyprogram'});
             navigation.reset({
               index: 0,
-              routes: [{name: 'Profile'}],
+              routes: [{name: 'Home'}],
             });
           }}>
           <Image
@@ -82,7 +82,7 @@ const HugeMenu = () => {
             navigation.navigate('Home', {screen: 'profile'});
             navigation.reset({
               index: 0,
-              routes: [{name: 'Profile'}],
+              routes: [{name: 'profile'}],
             });
           }}>
           <Image

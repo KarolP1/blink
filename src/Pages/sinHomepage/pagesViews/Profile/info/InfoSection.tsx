@@ -4,7 +4,14 @@ import SectionContainer from './Section';
 import {ShadowFlex} from 'react-native-neomorph-shadows';
 import {TextInput} from 'react-native-paper';
 import _, {values} from 'lodash';
-import {responseRegister} from '../../../../../redux/Auth/types';
+import {
+  IbusinessData,
+  IyourData,
+  responseRegister,
+} from '../../../../../redux/Auth/types';
+import DatePickerComponent from './DatePicker';
+import {useAppDispatch} from '../../../../../redux/hooks';
+import {editUser} from '../../../../../redux/Auth/thunks';
 
 const InfoSection = ({
   user,
@@ -16,53 +23,51 @@ const InfoSection = ({
 }) => {
   const {
     //user
-    address,
-    email,
-    first_name,
-    gender,
-    last_name,
-    postalcode,
-    profession,
-    user_status,
     username,
-    dob, //TODO: upewnić się czy dostaje z resp
+    first_name,
+    last_name,
+    dob,
+    email,
+    gender,
+    profession,
+    postalcode,
+    town,
+    country,
+    address,
     business_name,
     company_name,
     vat_number,
-    firstlineofaddress,
-    secondlineofaddress,
-    thirdlineofaddress,
     business_postalcode,
     business_town,
     business_country,
+    business_address,
   } = user;
 
   const [isEditModeEnabled, setIsEditModeEnabled] = useState<boolean>(false);
   const [isEditModeEnabledBusines, setIsEditModeEnabledBusines] =
     useState<boolean>(false);
 
-  const stateInitialYourData: responseRegister = {
+  const stateInitialYourData: IyourData = {
     username,
     first_name,
     last_name,
     dob,
     email,
-    address,
-    postalcode,
     gender,
     profession,
-    user_status,
+    postalcode,
+    town,
+    country,
+    address,
   };
-  const stateInitialBusinessData: responseRegister = {
+  const stateInitialBusinessData: IbusinessData = {
+    business_address,
+    business_country,
     business_name,
-    company_name,
-    vat_number,
-    firstlineofaddress,
-    secondlineofaddress,
-    thirdlineofaddress,
     business_postalcode,
     business_town,
-    business_country,
+    company_name,
+    vat_number,
   };
 
   const [editForm, setEditForm] = useState(stateInitialYourData);
@@ -70,12 +75,7 @@ const InfoSection = ({
     stateInitialBusinessData,
   );
 
-  const ifFormHasChanges = () => {
-    if (_.isEqual(editForm, stateInitialYourData)) {
-      return false;
-    } else return true;
-  };
-
+  const dispatch = useAppDispatch();
   return (
     <SectionContainer.Edit
       title={title}
@@ -87,7 +87,7 @@ const InfoSection = ({
       isEditModeEnabled={
         title === 'Business Data' ? isEditModeEnabledBusines : isEditModeEnabled
       }
-      ifFormHasChanges={ifFormHasChanges()}>
+      ifFormHasChanges={false}>
       {Object.entries(
         title === 'Business Data' ? editFormBusiness : editForm,
       ).map(([key, value], index) => {
@@ -124,7 +124,13 @@ const InfoSection = ({
                 </Text>
                 {isEditModeEnabled || isEditModeEnabledBusines ? (
                   <TextInput
-                    placeholder={value ? value?.split('_').join(' ') : key}
+                    placeholder={
+                      key === 'dob'
+                        ? 'DD/MM/YYYY'
+                        : value
+                        ? value?.split('_').join(' ')
+                        : key
+                    }
                     style={{
                       position: 'absolute',
                       textTransform: 'capitalize',
@@ -168,9 +174,9 @@ const InfoSection = ({
               borderRadius: 5,
             }}
             onPress={() => {
-              title === 'Business Data'
-                ? console.log({editFormBusiness}) //TODO busiines data edit
-                : console.log({editForm}); //TODO personal data edit
+              if (title === 'Business Data')
+                console.log({editFormBusiness}); //TODO busiines data edit
+              else console.log({editForm}); //TODO busiines data edit
             }}>
             <Text style={{color: '#fff'}}>Submit changes</Text>
           </TouchableOpacity>

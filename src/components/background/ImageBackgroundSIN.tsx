@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 30,
   },
   SideOptions: {
     width: 44,
@@ -94,5 +94,6 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 0,
     paddingTop: 0,
+    marginBottom: 100,
   },
 });

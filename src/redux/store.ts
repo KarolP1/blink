@@ -13,6 +13,10 @@ export const store = configureStore({
     login: LoginReducer,
     user: UserReducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

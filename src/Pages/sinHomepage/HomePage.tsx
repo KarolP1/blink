@@ -1,5 +1,5 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React, {useEffect} from 'react';
+import {Image, View} from 'react-native';
+import React from 'react';
 import Order from './pagesViews/Order/order';
 import Recipes from './pagesViews/Recipes/';
 import BuddyProgram from './pagesViews/BuddyProgram';
@@ -8,7 +8,6 @@ import {
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import ProfileRoot from './pagesViews/Profile';
-import {useNavigation} from '@react-navigation/native';
 
 export type TabStackParamList = {
   order: undefined;
@@ -24,14 +23,13 @@ const HomePage = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarHideOnKeyboard: true,
         headerShown: false,
         tabBarShowLabel: false,
 
         tabBarStyle: {
           position: 'absolute',
-          marginHorizontal: 20,
-          marginVertical: 40,
+          marginHorizontal: 10,
+          marginVertical: 10,
           height: 83,
           borderRadius: 25,
           backgroundColor: 'rgba(0,0,0,.65)',

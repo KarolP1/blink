@@ -12,13 +12,12 @@ import FixSizeView from '../../../../../components/fixSizeView';
 
 const ProfileInfoPage = () => {
   const {response} = useSelector((state: RootState) => state.login);
-  const user = response?.data;
   const [subscription, setSubscription] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
-    dispatch(setUserId({id: user?.id}));
-  }, [user]);
+    dispatch(setUserId({id: response?.user?.id}));
+  }, [response]);
 
   const userReducer = useAppSelector(state => state.user);
 
@@ -31,7 +30,7 @@ const ProfileInfoPage = () => {
       {subscription !== 'End User' && (
         <InfoSection
           title="Business Data"
-          user={user}
+          user={response?.businessData}
           editAction={() => {
             console.log('editing');
           }}
@@ -39,7 +38,7 @@ const ProfileInfoPage = () => {
       )}
       <InfoSection
         title="Your Data"
-        user={user}
+        user={response?.yourData}
         editAction={() => {
           console.log('editing');
         }}

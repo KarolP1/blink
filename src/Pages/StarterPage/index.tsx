@@ -4,9 +4,8 @@ import {
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
 import React from 'react';
-import Login from './Login';
-import Register from './Register';
-import SubscriptionLVL from './SubscriptionLevel';
+import LoginPage from './LoginPage';
+import RegisterPage from './RegisterPage';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,22 +25,10 @@ export type AuthScreenProp = NativeStackNavigationProp<
 
 export const StarterPage = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Register"
-        component={Register}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Subscription"
-        component={SubscriptionLVL}
-        options={{headerShown: false}}
-      />
+    <Stack.Navigator screenOptions={{header: () => null}}>
+      <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Register" component={RegisterPage} />
+      <Stack.Screen name="Subscription" component={LoginPage} />
     </Stack.Navigator>
   );
 };

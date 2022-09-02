@@ -36,7 +36,7 @@ const SectionContainerEdit = (props: {
   ifFormHasChanges: boolean;
 }) => {
   return (
-    <View style={{margin: 10}}>
+    <View style={{margin: 10, flex: 1}}>
       <View
         style={[
           styles.sectionHeader,
@@ -45,18 +45,14 @@ const SectionContainerEdit = (props: {
         <Text style={styles.headerText}>{props.title}</Text>
         <TouchableOpacity
           onPress={() => {
-            if (props.ifFormHasChanges)
-              Alert.alert(
-                'notification',
-                'form has unsafed changes. Submit to save them.',
-              );
-            else props.editAction();
+            props.editAction();
           }}
           style={{
-            height: '100%',
-            alignItems: 'center',
+            flex: 1,
+            alignItems: 'flex-end',
             justifyContent: 'center',
-            aspectRatio: 1,
+            width: '100%',
+            height: '100%',
           }}>
           {!props.isEditModeEnabled ? (
             <Image
@@ -113,12 +109,12 @@ const SectionContainerAdd = (props: {
           }}>
           {!props.isEditModeEnabled ? (
             <Image
-              style={{height: 20, aspectRatio: 1}}
+              style={{height: 30, aspectRatio: 1}}
               source={require(`../../../../../assets/utilityIcons/add.png`)}
             />
           ) : (
             <Image
-              style={{height: 20, aspectRatio: 1}}
+              style={{height: 30, aspectRatio: 1}}
               source={require(`../../../../../assets/utilityIcons/close.png`)}
             />
           )}
@@ -169,7 +165,7 @@ const SectionContainerAdd = (props: {
           </TouchableOpacity>
         </View>
       )}
-      <>{props.children}</>
+      <View>{props.children}</View>
     </View>
   );
 };
@@ -188,13 +184,12 @@ const SectionContainerPhoto = (props: {
             props.plusAction();
           }}
           style={{
-            height: '100%',
-            alignItems: 'center',
+            flex: 1,
+            alignItems: 'flex-end',
             justifyContent: 'center',
-            aspectRatio: 1,
           }}>
           <Image
-            style={{height: 20, aspectRatio: 1}}
+            style={{height: 30, aspectRatio: 1}}
             source={require(`../../../../../assets/utilityIcons/add.png`)}
           />
         </TouchableOpacity>
@@ -220,6 +215,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     flexDirection: 'row',
+    width: '100%',
   },
   headerText: {
     color: '#fff',

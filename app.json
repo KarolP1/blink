@@ -1,4 +1,7 @@
 {
   "name": "blink",
-  "displayName": "blink"
+  "displayName": "blink",
+  "androidStatusBar": {
+    "backgroundColor": "#ccaaca"
+  }
 }

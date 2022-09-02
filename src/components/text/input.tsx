@@ -1,3 +1,4 @@
+//#region
 import {
   Image,
   PermissionsAndroid,
@@ -12,17 +13,46 @@ import {
   geoProps,
   initialStateGeolocation,
 } from '../../Pages/sinHomepage/pagesViews/Order/SubPages/Restaurants/RestaurantPages';
+import CuisinePage from '../../Pages/sinHomepage/pagesViews/Order/cuisinePage';
+//#endregion
 
-export const TextInputCuisine = () => {
+export const TextInputCuisine = ({
+  cuisine,
+  setCuisine,
+}: {
+  cuisine: string | null;
+  setCuisine: React.Dispatch<React.SetStateAction<string | null>>;
+}) => {
+  const [isCuisinesVisible, setIsCuisinesVisible] = useState(false);
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.iconContainer}>
-        <Image
-          style={styles.searchIcon}
-          source={require('../../assets/utilityIcons/find.png')}
+    <View style={{zIndex: 10}}>
+      <View style={[styles.container, {position: 'relative'}]}>
+        <TouchableOpacity
+          style={styles.iconContainer}
+          onPress={() => {
+            setIsCuisinesVisible(!isCuisinesVisible);
+          }}>
+          <Image
+            style={styles.searchIcon}
+            source={require('../../assets/utilityIcons/find.png')}
+          />
+        </TouchableOpacity>
+        <TextInput
+          style={styles.input}
+          value={cuisine || ''}
+          selectTextOnFocus
+          onChangeText={setCuisine}
+          onFocus={() => setIsCuisinesVisible(true)}
         />
-      </TouchableOpacity>
-      <TextInput style={styles.input} />
+      </View>
+      {isCuisinesVisible && (
+        <CuisinePage
+          cuisine={cuisine}
+          setCuisine={setCuisine}
+          setIsCuisinesVisible={() => setIsCuisinesVisible(false)}
+        />
+      )}
     </View>
   );
 };
@@ -62,7 +92,7 @@ export const TextInputAddress = ({
         }
       })
 
-      .catch((e: any) => console.log(e));
+      .catch((e: any) => console.error(e));
   }, [geolocation]);
 
   return (
@@ -97,12 +127,13 @@ export const TextInputAddress = ({
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: 50,
     flexDirection: 'row',
     borderRadius: 5,
     overflow: 'hidden',
     backgroundColor: 'rgba(0,0,0,0.15)',
     alignItems: 'center',
+    flex: 1,
+    height: 50,
   },
   input: {
     flex: 1,
@@ -116,7 +147,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   iconContainer: {
-    width: 50,
+    height: '100%',
     aspectRatio: 1,
     alignItems: 'center',
     justifyContent: 'center',

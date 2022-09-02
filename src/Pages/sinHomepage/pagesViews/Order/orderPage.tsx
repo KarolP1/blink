@@ -1,16 +1,32 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {
+  ImageBackground,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import SignedInBG from '../../../../components/background/ImageBackgroundSIN';
 import {MenuSelector4} from '../../../../components/Selector4X4';
 import {TextInputCuisine} from '../../../../components/text/input';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const OrderPage = () => {
+  const [cuisine, setCuisine] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log(cuisine);
+  }, [cuisine]);
+
   return (
     <SignedInBG cantGoBack={true}>
-      <Text style={styles.Header}>Choose Cuisine</Text>
-      <TextInputCuisine />
-      <Text style={styles.Header}>Choose Provider Type</Text>
-      <MenuSelector4 />
+      <View style={{margin: 10}}>
+        <Text style={styles.Header}>Choose Cuisine</Text>
+        <TextInputCuisine cuisine={cuisine} setCuisine={setCuisine} />
+        <Text style={styles.Header}>Choose Provider Type</Text>
+        <MenuSelector4 />
+      </View>
     </SignedInBG>
   );
 };

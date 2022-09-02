@@ -9,7 +9,15 @@ const SmallRecipe = (props: {
   shereCount: number;
   image: string;
   details?: any;
+  editable: boolean;
 }) => {
+  const handleEdit = () => {
+    //TODO addReduxEdit
+  };
+
+  const handleDelete = () => {
+    //TODO addReduxDelete
+  };
   return (
     <ShadowFlex style={styles.container}>
       <Image
@@ -41,6 +49,32 @@ const SmallRecipe = (props: {
           <Text style={{color: '#fff'}}>{props.shereCount}</Text>
         </View>
       </View>
+      {props.editable && (
+        <View
+          style={{
+            position: 'absolute',
+            top: 10,
+            right: 10,
+            padding: 10,
+            marginVertical: 5,
+          }}>
+          <TouchableOpacity
+            onPress={() => {
+              handleEdit;
+            }}>
+            <Image
+              style={styles.smallIconOptions}
+              source={require('../../../../../../assets/utilityIcons/editC.png')}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleDelete}>
+            <Image
+              style={styles.smallIconOptions}
+              source={require('../../../../../../assets/utilityIcons/deleteC.png')}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
       <TouchableOpacity
         style={{
           width: '40%',
@@ -50,7 +84,7 @@ const SmallRecipe = (props: {
           margin: 5,
           borderRadius: 5,
         }}>
-        <Text style={{textAlign: 'center'}}>Details</Text>
+        <Text style={{textAlign: 'center', color: '#fff'}}>Details</Text>
       </TouchableOpacity>
     </ShadowFlex>
   );
@@ -60,12 +94,18 @@ export default SmallRecipe;
 
 const styles = StyleSheet.create({
   container: {
-    width: '60%',
+    shadowOffset: {width: 2, height: 2},
+    shadowOpacity: 1,
+    shadowColor: 'rgba(77,77,77,.25)',
+    shadowRadius: 5,
     borderRadius: 10,
-    overflow: 'hidden',
-    backgroundColor: 'rgba(171,160,145,0.7)',
-    position: 'relative',
+    backgroundColor: 'rgba(171,160,145,.85)',
+    width: 230,
+    margin: 5,
     alignItems: 'flex-end',
+    justifyContent: 'center',
+    marginHorizontal: 5,
+    overflow: 'hidden',
   },
   absoluteContainer: {
     position: 'absolute',
@@ -86,6 +126,11 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: 10,
+  },
+  smallIconOptions: {
+    width: 30,
+    height: 30,
+    marginBottom: 10,
   },
   titleContainer: {
     flex: 1,

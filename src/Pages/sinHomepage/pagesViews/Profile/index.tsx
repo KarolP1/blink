@@ -19,21 +19,20 @@ const ProfileRoot = () => {
     setUserSubscription(user.userSubscription);
   }, [user]);
 
-  const UserFromDb = login.response?.data;
-
+  const UserFromDb = login.response;
   return (
     <SignedInBG cantGoBack={true}>
       <UserBanner
-        bannerImage={UserFromDb?.coverphoto}
-        profileImage={UserFromDb?.dp}
-        firstName={UserFromDb?.first_name}
-        lastName={UserFromDb?.last_name}
+        bannerImage={UserFromDb?.user.coverphoto}
+        profileImage={UserFromDb?.user.dp}
+        firstName={UserFromDb?.user.first_name}
+        lastName={UserFromDb?.user.last_name}
       />
       <Text style={{display: 'flex'}}>{userSubscription}</Text>
       <InsideMenu selected={selected} setSelected={setSelected} />
       {selected === 0 && <ProfileInfoPage />}
-      {selected === 1 && <ProfileRecipesPage />}
-      {/* {selected === 2 && <ProfileInfoPage />}
+      {/* {selected === 1 && <ProfileRecipesPage />}
+      {selected === 2 && <ProfileInfoPage />}
       {selected === 3 && <ProfileInfoPage />}
       {selected === 4 && <ProfileInfoPage />} */}
       <FixSizeView />

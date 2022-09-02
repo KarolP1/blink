@@ -1,17 +1,17 @@
 import {
   FlatList,
+  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {ReactNode, useEffect, useState} from 'react';
 import {default as StaticSubscriptions} from '../static/subscription.json';
-import {formRegister} from '../redux/Auth/types';
-import {Controller} from 'react-hook-form';
-import {useFormik} from 'formik';
-import DropDownPicker from 'react-native-dropdown-picker';
 
 interface inputInterface {
   placeholder: string;
@@ -24,6 +24,7 @@ interface inputInterface {
   style?: any;
   valueForm: string;
   control?: any;
+  error?: string;
 }
 
 const InputForm = (props: inputInterface) => {
@@ -48,6 +49,7 @@ const InputForm = (props: inputInterface) => {
                 : true
             }
           />
+          {props.error && <Text>{props.error}</Text>}
         </>
       ) : (
         <TouchableOpacity onPress={() => setIsOpen(!isOpen)}>
@@ -111,6 +113,22 @@ const styles = StyleSheet.create({
   },
   container: {width: '100%'},
 });
+
+export const KeyboardAvodingWrapper = ({children}: {children: ReactNode}) => {
+  return (
+    <ScrollView style={{flex: 1}}>
+      <ScrollView
+        keyboardDismissMode="on-drag"
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          {children}
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </ScrollView>
+  );
+};
+
 const keyboardtype = (props: string) => {
   switch (props) {
     case 'useremail':

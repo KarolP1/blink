@@ -1,43 +1,68 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import ReactNative, {
+  Button,
+  Dimensions,
+  Image,
+  ImageBackground,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableWithoutFeedback,
+  useWindowDimensions,
+  View,
+} from 'react-native';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import React, {ReactNode} from 'react';
 
 const ImageBg = ({children}: {children: ReactNode}) => {
+  let ScreenHeight = Dimensions.get('window').height;
+  function _scrollToInput(reactNode: any) {
+    // Add a 'scroll' ref to your ScrollView
+    reactNode.scroll.props.scrollToFocusedInput(reactNode);
+  }
   return (
-    <ImageBackground
-      style={styles.background}
-      source={require('../../assets/background.png')}>
-      <View style={styles.container}>
-        <Image
-          style={styles.logo}
-          source={require('../../assets/BLINKFIX.png')}
-        />
-        <View style={styles.formContainer}>{children}</View>
-      </View>
-    </ImageBackground>
+    <KeyboardAvoidingView
+      style={{flex: 1}}
+      enabled
+      renderToHardwareTextureAndroid>
+      <ScrollView
+        keyboardDismissMode="on-drag"
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          {children}
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 export default ImageBg;
 
 const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   container: {
-    width: '80%',
+    flex: 1,
   },
-  logo: {
-    width: '100%',
-    height: 80,
-    resizeMode: 'center',
+  inner: {
+    padding: 24,
+    justifyContent: 'flex-end',
   },
-  formContainer: {
-    paddingVertical: 40,
-    marginVertical: 20,
-    backgroundColor: 'rgba(77,77,77,.15)',
-    padding: 10,
-    borderRadius: 10,
+  header: {
+    fontSize: 36,
+    marginBottom: 48,
+  },
+  input: {
+    height: 40,
+    borderColor: '#000000',
+    borderBottomWidth: 1,
+    marginBottom: 36,
+  },
+  btnContainer: {
+    backgroundColor: 'white',
+    marginTop: 12,
   },
 });
