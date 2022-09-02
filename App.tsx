@@ -9,9 +9,9 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationProp,
 } from '@react-navigation/native-stack';
-import {RootStackParamList, StarterPage} from './Pages/StarterPage';
-import {RootState, store} from './redux/store';
-import FirstPage from './Pages/sinHomepage';
+import {RootStackParamList, StarterPage} from './src/Pages/StarterPage';
+import {RootState, store} from './src/redux/store';
+import FirstPage from './src/Pages/sinHomepage';
 import {enableLatestRenderer} from 'react-native-maps';
 import SystemNavigationBar from 'react-native-system-navigation-bar';
 
